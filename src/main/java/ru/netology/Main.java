@@ -16,10 +16,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +57,7 @@ public class Main {
     }
 
     //ЗАДАЧА 1
-    private static List<Employee> parseCSV(String[] columnMapping, String fileName) {
+    static List<Employee> parseCSV(String[] columnMapping, String fileName) {
         List<Employee> parseCSV = null;
         try (CSVReader reader = new CSVReader(new FileReader(fileName))) {
 
@@ -79,7 +76,7 @@ public class Main {
     }
 
     //ЗАДАЧА 2
-    private static List<Employee> parseXML(String s) {
+    static List<Employee> parseXML(String s) {
         List<Employee> employees = new ArrayList<>();
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();

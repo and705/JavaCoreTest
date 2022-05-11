@@ -5,6 +5,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.TestInstance;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.List;
+
+import static ru.netology.Main.parseCSV;
+import static ru.netology.Main.parseXML;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 
@@ -27,20 +33,7 @@ public class AppTest {
 //    }
 
 
-    @Test
-    public void ageNotChange() {
-        System.out.println("AgeNotChange");
-        long id = 2;
-        String firstName = "Inav";
-        String lastName = "Petrov";
-        String country = "RU";
-        int age = 23;
-        Employee employee = new Employee(id, firstName, lastName, country, age);
 
-        Assertions.assertEquals(age, employee.age);
-
-
-    }
 
     @Test
     public void writeStringOk() {
@@ -53,11 +46,47 @@ public class AppTest {
     }
 
     @Test
-    public void fileCreated() {
-        System.out.println("fileCreated");
-        File test = new File("test.json");
-        Assertions.assertTrue(test.exists());
-        test.delete();
+    public void parseCsvTestNotNull(){
+        System.out.println("parseCsvTest");
+        String[] columnMapping = {"id", "firstName", "lastName", "country", "age"};
+        String fileName = "data.csv";
+
+        List<Employee> list = Main.parseCSV(columnMapping, fileName);
+
+        Assertions.assertNotNull(list);
+
     }
+
+    @Test
+    public void parseXmlTest(){
+        System.out.println("parseXmlTest");
+        List<Employee> listFromXML = parseXML("data.xml");
+
+        Assertions.assertEquals(2, listFromXML.size());
+
+    }
+
+//    @Test
+//    public void fileCreated() {
+//        System.out.println("fileCreated");
+//        File test = new File("test.json");
+//        Assertions.assertTrue(test.exists());
+//        test.delete();
+//    }
+
+    //    @Test
+//    public void ageNotChange() {
+//        System.out.println("AgeNotChange");
+//        long id = 2;
+//        String firstName = "Inav";
+//        String lastName = "Petrov";
+//        String country = "RU";
+//        int age = 23;
+//        Employee employee = new Employee(id, firstName, lastName, country, age);
+//
+//        Assertions.assertEquals(age, employee.age);
+//
+//
+//    }
 
 }
